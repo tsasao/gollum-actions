@@ -28,5 +28,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: https://github.com/${{ github.event.repository.full_name }}.wiki.git
         run: |
-          git clone -c http.https://github.com/.extraheader "AUTHORIZATION: basic ${GITHUB_TOKEN}" ${URL}
+          git clone -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${GITHUB_TOKEN}" ${URL}
           find .
