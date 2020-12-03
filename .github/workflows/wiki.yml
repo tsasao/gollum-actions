@@ -25,8 +25,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Checkout wiki
         env:
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          URL: https://github.com/${{ github.event.repository.full_name }}.wiki.git
+          GITHUB_REPOS: ${{ github.event.repository.full_name }}
         run: |
-          git clone -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${GITHUB_TOKEN}" ${URL}
+          git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOS}.wiki.git
           find .
